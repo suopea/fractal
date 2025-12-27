@@ -29,7 +29,7 @@ t_scene	*string_to_scene_array(char *string, size_t scene_count)
 		line_array[i] = strtok(NULL, "\n");
 	}
 
-	scene_array = calloc(scene_count + 1, sizeof(t_scene));
+	scene_array = calloc(scene_count, sizeof(t_scene));
 	i = 0;
 	while (i < scene_count)
 	{

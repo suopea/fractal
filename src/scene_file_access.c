@@ -57,6 +57,11 @@ int	scene_save(t_data *data)
 	append_float_to_file(buffer, fd, data->scale * ((float)data->width / 1));
 	write(fd, "\n", 1);
 	close(fd);
+	data->scene_count++;
+	data->scenes = realloc(data->scenes, data->scene_count * sizeof(t_scene));
+	data->scenes[data->scene_count - 1].location.i = data->location.i;
+	data->scenes[data->scene_count - 1].location.r = data->location.r;
+	data->scenes[data->scene_count - 1].scale = data->scale * ((float)data->width / 1);
 	return (EXIT_SUCCESS);	
 }
 
