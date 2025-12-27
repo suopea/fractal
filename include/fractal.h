@@ -53,6 +53,12 @@ typedef struct s_complex
 	double	i;
 }	t_complex;
 
+typedef struct	s_scene
+{
+	t_complex	location;
+	double		scale;
+}	t_scene;
+
 typedef struct s_data
 {
 	t_complex		*px;
@@ -75,7 +81,7 @@ typedef struct s_data
 	int				resizing;
 	int				mouse_last_position;
 	int				cursor_fading;
-	char			**scenes;
+	t_scene			*scenes;
 }	t_data;
 
 /* input validation */
