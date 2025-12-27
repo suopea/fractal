@@ -82,6 +82,7 @@ typedef struct s_data
 	int				mouse_last_position;
 	int				cursor_fading;
 	t_scene			*scenes;
+	size_t			scene_count;
 }	t_data;
 
 /* input validation */
@@ -143,5 +144,9 @@ void	free_and_exit(t_data *data);
 
 int		save_scene(t_data *data);
 int		load_scenes(t_data *data);
+
+/* debugging */
+
+void	display_scene_array(t_data *data);
 
 #endif

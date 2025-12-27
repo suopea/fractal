@@ -3,7 +3,9 @@
 
 static void	append_float_to_file(char *string, int file, double number);
 static char	*read_file(char *filename);
-static t_scene	*string_to_scene_array(char *string);
+static t_scene	*string_to_scene_array(char *string, size_t scene_count);
+static size_t	newline_count(char *str);
+static t_scene	line_to_scene(char *string);
 
 int	save_scene(t_data *data)
 {
@@ -41,24 +43,64 @@ int	load_scenes(t_data *data)
 
 	scenes_string = read_file(SCENE_FILE);
 	printf("\n\n%s\n", scenes_string);
-	data->scenes = string_to_scene_array(scenes_string);
+	data->scene_count = newline_count(scenes_string);
+	data->scenes = string_to_scene_array(scenes_string, data->scene_count);
+	display_scene_array(data);
 
 	return (EXIT_SUCCESS);
 }
 
-static t_scene	*string_to_scene_array(char *string)
+static t_scene	*string_to_scene_array(char *string, size_t scene_count)
 {
-	// t_scene	*array;
-	char	*line;
+	t_scene	*scene_array;
+	char	**line_array;
+	size_t	i = 0;
 
-	line = strtok(string, "\n");
-	while (line)
+	assert(!strstr(string, "\n\n"));
+	line_array = calloc(scene_count + 1, sizeof(char *));
+	line_array[i] = strtok(string, "\n");
+	while (i < scene_count)
 	{
-		printf("line: %s\n", line);
-		line = strtok(NULL, "\n");
+		i++;
+		line_array[i] = strtok(NULL, "\n");
 	}
 
-	return (NULL);
+	scene_array = calloc(scene_count + 1, sizeof(t_scene));
+	i = 0;
+	while (i < scene_count)
+	{
+		scene_array[i] = line_to_scene(line_array[i]);
+		i++;
+	}
+	free(line_array);
+	return (scene_array);
+}
+
+static t_scene	line_to_scene(char *string)
+{
+	t_scene	scene;
+	char	*token;
+
+	token = strtok(string, ",");
+	scene.location.r = strtod(token, NULL);
+	token = strtok(NULL, ",");
+	scene.location.i = strtod(token, NULL);
+	token = strtok(NULL, ",");
+	scene.scale = strtod(token, NULL);
+	return (scene);	
+}
+
+static size_t	newline_count(char *str)
+{
+	size_t	count = 0;
+
+	while (*str)
+	{
+		if (*str == '\n')
+			count++;
+		str++;
+	}
+	return (count);
 }
 
 static char	*read_file(char *filename)
