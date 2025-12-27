@@ -70,6 +70,11 @@ void	key_hook(mlx_key_data_t keydata, void *input)
 		scene_save(data);
 	if (keydata.key == MLX_KEY_SPACE)
 		toggle_pause(data);
+	if (keydata.key == MLX_KEY_LEFT)
+	{
+		data->scene_index = (data->scene_index + data->scene_count - 1) % data->scene_count;
+		scene_switch(data, data->scene_index);	
+	}
 	if (keydata.key == MLX_KEY_RIGHT)
 	{
 		data->scene_index = (data->scene_index + 1) % data->scene_count;
