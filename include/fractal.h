@@ -143,9 +143,12 @@ void	free_and_exit(t_data *data);
 
 /* save and restore scenes */
 
-int		save_scene(t_data *data);
-int		load_scenes(t_data *data);
-void	change_to_scene(t_data *data, size_t i);
+int		scene_save(t_data *data);
+int		scenes_load_from_file(t_data *data);
+void	scene_switch(t_data *data, size_t i);
+t_scene	*string_to_scene_array(char *string, size_t scene_count);
+size_t	newline_count(char *str);
+
 
 /* debugging */
 
