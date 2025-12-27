@@ -71,15 +71,9 @@ void	key_hook(mlx_key_data_t keydata, void *input)
 	if (keydata.key == MLX_KEY_SPACE)
 		toggle_pause(data);
 	if (keydata.key == MLX_KEY_LEFT)
-	{
-		data->scene_index = (data->scene_index + data->scene_count - 1) % data->scene_count;
-		scene_switch(data, data->scene_index);	
-	}
+		scene_switch(data, -1);	
 	if (keydata.key == MLX_KEY_RIGHT)
-	{
-		data->scene_index = (data->scene_index + 1) % data->scene_count;
-		scene_switch(data, data->scene_index);	
-	}
+		scene_switch(data, 1);	
 }
 
 void	resize_hook(int32_t width, int32_t height, void *input)

@@ -3,11 +3,14 @@
 
 static t_scene	line_to_scene(char *string);
 
-void	scene_switch(t_data *data, size_t i)
+void	scene_switch(t_data *data, int i)
 {
-	data->location.r = data->scenes[i].location.r;
-	data->location.i = data->scenes[i].location.i;
-	data->scale = data->scenes[i].scale;
+	printf("index before %lu ", data->scene_index);
+	data->scene_index = (data->scene_index + data->scene_count + i) % data->scene_count;
+	printf("\nindex after %lu \n\n", data->scene_index);
+	data->location.r = data->scenes[data->scene_index].location.r;
+	data->location.i = data->scenes[data->scene_index].location.i;
+	data->scale = data->scenes[data->scene_index].scale;
 	update_locations(data);
 }
 

@@ -145,7 +145,7 @@ void	free_and_exit(t_data *data);
 
 int		scene_save(t_data *data);
 int		scenes_load_from_file(t_data *data);
-void	scene_switch(t_data *data, size_t i);
+void	scene_switch(t_data *data, int i);
 t_scene	*string_to_scene_array(char *string, size_t scene_count);
 size_t	newline_count(char *str);
 
