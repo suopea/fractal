@@ -54,7 +54,7 @@ int	scene_save(t_data *data)
 	}
 	append_float_to_file(buffer, fd, data->location.r);
 	append_float_to_file(buffer, fd, data->location.i);
-	append_float_to_file(buffer, fd, data->scale);
+	append_float_to_file(buffer, fd, data->scale * ((float)data->width / 1));
 	write(fd, "\n", 1);
 	close(fd);
 	return (EXIT_SUCCESS);	
