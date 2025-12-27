@@ -8,7 +8,7 @@ SRCS	:= $(wildcard src/*.c)
 OBJS	:= ${SRCS:src/%.c=obj/%.o}
 
 all: $(MLX_LIB) $(NAME)
-	./mandelbrot
+	# ./mandelbrot
 
 $(NAME): $(OBJS) $(MLX_LIB)
 	$(CC) $(OBJS) $(LIBS) $(INCLUDE) -o $(NAME)

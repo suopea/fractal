@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/stat.h>
+# include <assert.h>
 
 # define WIDTH 1000
 # define HEIGHT 600

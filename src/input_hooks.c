@@ -1,4 +1,5 @@
 
+#include "MLX42/MLX42.h"
 #include "fractal.h"
 
 void	mouse_hook(
@@ -59,16 +60,21 @@ void	key_hook(mlx_key_data_t keydata, void *input)
 	data = input;
 	if (keydata.action != MLX_PRESS)
 		return ;
-	if (keydata.key == KEY_ESC)
-		free_and_exit(data);
-	if (keydata.key == KEY_REITERATE)
-		reset_orbits(data);
-	if (keydata.key == KEY_RESET)
-		reset(data);
-	if (keydata.key == KEY_SAVE)
-		save_scene(data);
-	if (keydata.key == MLX_KEY_SPACE)
-		toggle_pause(data);
+	switch (keydata.key)
+	{
+		case KEY_ESC:
+			free_and_exit(data);
+		case KEY_REITERATE:
+			reset_orbits(data);
+		case KEY_RESET:
+			reset(data);
+		case KEY_SAVE:
+			save_scene(data);
+		case MLX_KEY_SPACE:
+			toggle_pause(data);
+		default:
+			break;
+	}
 }
 
 void	resize_hook(int32_t width, int32_t height, void *input)

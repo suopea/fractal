@@ -31,3 +31,5 @@ static void	append_float_to_file(char *string, int file, double number)
 	bzero(string, SAVE_PRECISION);
 	write(file, ",", 1);
 }
+
+
