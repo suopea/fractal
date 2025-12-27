@@ -7,6 +7,14 @@ static t_scene	*string_to_scene_array(char *string, size_t scene_count);
 static size_t	newline_count(char *str);
 static t_scene	line_to_scene(char *string);
 
+void	change_to_scene(t_data *data, size_t i)
+{
+	data->location.r = data->scenes[i].location.r;
+	data->location.i = data->scenes[i].location.i;
+	data->scale = data->scenes[i].scale;
+	update_locations(data);
+}
+
 int	save_scene(t_data *data)
 {
 	char	*buffer;

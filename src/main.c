@@ -8,6 +8,7 @@ int	main(void)
 {
 	t_data	data;
 
+	bzero(&data, sizeof(data));
 	load_scenes(&data);
 	initialize(&data);
 	mlx_loop(data.mlx);
@@ -18,6 +19,7 @@ int	main(void)
 
 static int	initialize(t_data *data)
 {
+	
 	initialize_program(data);
 	if (!initialize_mlx(data))
 		free_and_exit(data);

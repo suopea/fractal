@@ -1,4 +1,5 @@
 
+#include "MLX42/MLX42.h"
 #include "fractal.h"
 
 void	mouse_hook(
@@ -69,6 +70,11 @@ void	key_hook(mlx_key_data_t keydata, void *input)
 		save_scene(data);
 	if (keydata.key == MLX_KEY_SPACE)
 		toggle_pause(data);
+	if (keydata.key == MLX_KEY_RIGHT)
+	{
+		data->scene_index = (data->scene_index + 1) % data->scene_count;
+		change_to_scene(data, data->scene_index);	
+	}
 }
 
 void	resize_hook(int32_t width, int32_t height, void *input)
