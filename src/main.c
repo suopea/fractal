@@ -8,6 +8,7 @@ int	main(void)
 {
 	t_data	data;
 
+	load_scenes(&data);
 	initialize(&data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);

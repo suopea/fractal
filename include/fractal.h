@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <string.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <unistd.h>
 # include <sys/stat.h>
 # include <assert.h>
@@ -42,6 +43,9 @@
 # define KEY_REITERATE MLX_KEY_I
 # define KEY_RESET MLX_KEY_R
 # define KEY_SAVE MLX_KEY_S
+
+# define SCENE_FILE "saved_scenes"
+# define BUFFER_SIZE 10
 
 typedef struct s_complex
 {
@@ -71,6 +75,7 @@ typedef struct s_data
 	int				resizing;
 	int				mouse_last_position;
 	int				cursor_fading;
+	char			**scenes;
 }	t_data;
 
 /* input validation */
@@ -131,5 +136,6 @@ void	free_and_exit(t_data *data);
 /* save and restore scenes */
 
 int		save_scene(t_data *data);
+int		load_scenes(t_data *data);
 
 #endif
